@@ -84,9 +84,11 @@
       transform: scale(0.97);
     }
 
-    .product-emoji {
-      font-size: 3rem;
-      line-height: 1;
+    .product-img {
+      width: 80px;
+      height: 80px;
+      object-fit: contain;
+      border-radius: 10px;
     }
 
     .product-name {
@@ -172,8 +174,11 @@
       gap: 8px;
     }
 
-    .cart-item-emoji {
-      font-size: 1.8rem;
+    .cart-item-img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      border-radius: 8px;
       flex-shrink: 0;
     }
 
@@ -370,7 +375,7 @@
       gap: 8px;
     }
 
-    .modal-item-emoji { font-size: 1.4rem; }
+    .modal-item-img { width: 36px; height: 36px; object-fit: contain; border-radius: 6px; }
     .modal-item-name { font-weight: 600; }
     .modal-item-qty { color: #888; font-size: 0.85rem; }
     .modal-item-price { font-weight: 700; color: #111; }
@@ -471,21 +476,21 @@
 <script>
 const PRODUCTS = [
   // Pizzas
-  { id: 'lancien',    name: "Pizza de l'Ancien", emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🥩 Jambon bayonne'] },
-  { id: 'margherita', name: 'Pizza Margherita',  emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
-  { id: '4fromage',   name: 'Pizza 4 Fromage',   emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Fromage'] },
-  { id: 'burata',     name: 'Pizza Burata',       emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
+  { id: 'lancien',    name: "Pizza de l'Ancien", img: 'https://i.postimg.cc/W4tprcvR/pzb33r.png',                                             price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🥩 Jambon bayonne'] },
+  { id: 'margherita', name: 'Pizza Margherita',  img: 'https://i.postimg.cc/g0BJBkD2/d0hyhf.png',                                             price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
+  { id: '4fromage',   name: 'Pizza 4 Fromage',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizza4fromage.webp',                 price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Fromage'] },
+  { id: 'burata',     name: 'Pizza Burata',       img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizzaburata.webp',                   price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
   // Plats
-  { id: 'lasagne',    name: 'Lasagne',            emoji: '🍝', price: 40, cat: 'Plats',    recipe: ['🍝 Pâte', '🥩 Viande hachée', '🍅 Sauce tomate'] },
-  { id: 'focaccia',   name: 'Focaccia',           emoji: '🫓', price: 40, cat: 'Plats',    recipe: ['🍞 Pain de mie', '🫒 Olive', '🫙 Huile'] },
+  { id: 'lasagne',    name: 'Lasagne',            img: 'https://i.postimg.cc/4xfxfh2X/6qu43w.png',                                             price: 40, cat: 'Plats',    recipe: ['🍝 Pâte', '🥩 Viande hachée', '🍅 Sauce tomate'] },
+  { id: 'focaccia',   name: 'Focaccia',           img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Foccacia.png',               price: 40, cat: 'Plats',    recipe: ['🍞 Pain de mie', '🫒 Olive', '🫙 Huile'] },
   // Desserts
-  { id: 'tiramisu',   name: 'Tiramisu',           emoji: '☕', price: 20, cat: 'Desserts', recipe: ['🧁 Mascarpone', '🍫 Chocolat'] },
-  { id: 'panettone',  name: 'Panettone',          emoji: '🎂', price: 20, cat: 'Desserts', recipe: ['🌾 Farine', '🥚 Oeuf', '🍬 Sucre'] },
+  { id: 'tiramisu',   name: 'Tiramisu',           img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/tiramisu.webp',                      price: 20, cat: 'Desserts', recipe: ['🧁 Mascarpone', '🍫 Chocolat'] },
+  { id: 'panettone',  name: 'Panettone',          img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/panettone.png',               price: 20, cat: 'Desserts', recipe: ['🌾 Farine', '🥚 Oeuf', '🍬 Sucre'] },
   // Boissons
-  { id: 'limonata',   name: 'Limonata',           emoji: '🍋', price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '💧 Eau gazeuse', '🍬 Sucre'] },
-  { id: 'limoncello', name: 'Limoncello',         emoji: '🍾', price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '🍶 Alcool', '💧 Eau'] },
-  { id: 'tontoncola', name: 'Tonton Cola',        emoji: '🥤', price: 30, cat: 'Boissons', recipe: ['🍫 Sirop cola', '💧 Eau gazeuse', '🍬 Sucre'] },
-  { id: 'tequila',    name: 'Tequila',            emoji: '🥃', price: 10, cat: 'Boissons', recipe: ['🍶 Alcool', '🌵 Agave', '💧 Eau'] },
+  { id: 'limonata',   name: 'Limonata',           img: 'https://i.postimg.cc/YqgWGgxm/qk4lfw.png',                                             price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '💧 Eau gazeuse', '🍬 Sucre'] },
+  { id: 'limoncello', name: 'Limoncello',         img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Limoncello.png',              price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '🍶 Alcool', '💧 Eau'] },
+  { id: 'tontoncola', name: 'Tonton Cola',        img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/TontonCola.png',              price: 30, cat: 'Boissons', recipe: ['🍫 Sirop cola', '💧 Eau gazeuse', '🍬 Sucre'] },
+  { id: 'tequila',    name: 'Tequila',            img: 'https://i.postimg.cc/V6fLgQyT/images-removebg-preview.png',                             price: 10, cat: 'Boissons', recipe: ['🍶 Alcool', '🌵 Agave', '💧 Eau'] },
 ];
 
 const cart = {};
@@ -531,7 +536,7 @@ function renderCart() {
     total += subtotal;
     return `
       <div class="cart-item">
-        <span class="cart-item-emoji">${p.emoji}</span>
+        <img class="cart-item-img" src="${p.img}" alt="${p.name}">
         <div class="cart-item-info">
           <div class="cart-item-name">${p.name}</div>
           <div class="cart-item-subtotal">${subtotal}</div>
@@ -558,7 +563,7 @@ function renderMenu() {
       <div class="products-grid">
         ${prods.map(p => `
           <button class="product-btn" id="btn-${p.id}" onclick="addToCart('${p.id}')">
-            <span class="product-emoji">${p.emoji}</span>
+            <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
             <span class="product-name">${p.name}</span>
             <span class="product-price">${p.price}</span>
             <div class="product-recipe">${p.recipe.map(i => `<span>${i}</span>`).join('')}</div>
@@ -587,7 +592,7 @@ function showFacture() {
     return `
       <div class="modal-item">
         <div class="modal-item-left">
-          <span class="modal-item-emoji">${p.emoji}</span>
+          <img class="modal-item-img" src="${p.img}" alt="${p.name}">
           <div>
             <div class="modal-item-name">${p.name}</div>
             <div class="modal-item-qty">x${qty} × ${p.price}$</div>
