@@ -108,6 +108,21 @@
       margin-left: 2px;
     }
 
+    .product-recipe {
+      font-size: 0.72rem;
+      color: #bbb;
+      text-align: left;
+      width: 100%;
+      border-top: 1px solid #5a3000;
+      padding-top: 6px;
+      margin-top: 2px;
+      line-height: 1.5;
+    }
+
+    .product-recipe span {
+      display: block;
+    }
+
     /* ===== PANIER ===== */
     .cart {
       width: 320px;
@@ -456,21 +471,21 @@
 <script>
 const PRODUCTS = [
   // Pizzas
-  { id: 'lancien',    name: "Pizza de l'Ancien", emoji: '🍕', price: 45, cat: 'Pizzas' },
-  { id: 'margherita', name: 'Pizza Margherita',  emoji: '🍕', price: 45, cat: 'Pizzas' },
-  { id: '4fromage',   name: 'Pizza 4 Fromage',   emoji: '🍕', price: 45, cat: 'Pizzas' },
-  { id: 'burata',     name: 'Pizza Burata',       emoji: '🍕', price: 45, cat: 'Pizzas' },
+  { id: 'lancien',    name: "Pizza de l'Ancien", emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🥩 Jambon bayonne'] },
+  { id: 'margherita', name: 'Pizza Margherita',  emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
+  { id: '4fromage',   name: 'Pizza 4 Fromage',   emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Fromage'] },
+  { id: 'burata',     name: 'Pizza Burata',       emoji: '🍕', price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
   // Plats
-  { id: 'lasagne',    name: 'Lasagne',            emoji: '🍝', price: 40, cat: 'Plats' },
-  { id: 'focaccia',   name: 'Focaccia',           emoji: '🫓', price: 40, cat: 'Plats' },
+  { id: 'lasagne',    name: 'Lasagne',            emoji: '🍝', price: 40, cat: 'Plats',    recipe: ['🍝 Pâte', '🥩 Viande hachée', '🍅 Sauce tomate'] },
+  { id: 'focaccia',   name: 'Focaccia',           emoji: '🫓', price: 40, cat: 'Plats',    recipe: ['🍞 Pain de mie', '🫒 Olive', '🫙 Huile'] },
   // Desserts
-  { id: 'tiramisu',   name: 'Tiramisu',           emoji: '☕', price: 20, cat: 'Desserts' },
-  { id: 'panettone',  name: 'Panettone',          emoji: '🎂', price: 20, cat: 'Desserts' },
+  { id: 'tiramisu',   name: 'Tiramisu',           emoji: '☕', price: 20, cat: 'Desserts', recipe: ['🧁 Mascarpone', '🍫 Chocolat'] },
+  { id: 'panettone',  name: 'Panettone',          emoji: '🎂', price: 20, cat: 'Desserts', recipe: ['🌾 Farine', '🥚 Oeuf', '🍬 Sucre'] },
   // Boissons
-  { id: 'limonata',   name: 'Limonata',           emoji: '🍋', price: 30, cat: 'Boissons' },
-  { id: 'limoncello', name: 'Limoncello',         emoji: '🍾', price: 30, cat: 'Boissons' },
-  { id: 'tontoncola', name: 'Tonton Cola',        emoji: '🥤', price: 30, cat: 'Boissons' },
-  { id: 'tequila',    name: 'Tequila',            emoji: '🥃', price: 10, cat: 'Boissons' },
+  { id: 'limonata',   name: 'Limonata',           emoji: '🍋', price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '💧 Eau gazeuse', '🍬 Sucre'] },
+  { id: 'limoncello', name: 'Limoncello',         emoji: '🍾', price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '🍶 Alcool', '💧 Eau'] },
+  { id: 'tontoncola', name: 'Tonton Cola',        emoji: '🥤', price: 30, cat: 'Boissons', recipe: ['🍫 Sirop cola', '💧 Eau gazeuse', '🍬 Sucre'] },
+  { id: 'tequila',    name: 'Tequila',            emoji: '🥃', price: 10, cat: 'Boissons', recipe: ['🍶 Alcool', '🌵 Agave', '💧 Eau'] },
 ];
 
 const cart = {};
@@ -546,6 +561,7 @@ function renderMenu() {
             <span class="product-emoji">${p.emoji}</span>
             <span class="product-name">${p.name}</span>
             <span class="product-price">${p.price}</span>
+            <div class="product-recipe">${p.recipe.map(i => `<span>${i}</span>`).join('')}</div>
           </button>
         `).join('')}
       </div>
