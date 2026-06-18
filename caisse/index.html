@@ -111,18 +111,38 @@
     }
 
     .product-recipe {
-      font-size: 0.72rem;
-      color: #bbb;
-      text-align: left;
       width: 100%;
       border-top: 1px solid #5a3000;
       padding-top: 6px;
       margin-top: 2px;
-      line-height: 1.5;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 4px;
+      justify-content: center;
     }
 
-    .product-recipe span {
-      display: block;
+    .recipe-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 2px;
+      width: 44px;
+    }
+
+    .recipe-item img {
+      width: 32px;
+      height: 32px;
+      object-fit: contain;
+      border-radius: 6px;
+      background: rgba(255,255,255,0.05);
+    }
+
+    .recipe-item span {
+      font-size: 0.6rem;
+      color: #bbb;
+      text-align: center;
+      line-height: 1.1;
+      word-break: break-word;
     }
 
     /* ===== PANIER ===== */
@@ -474,23 +494,47 @@
 </div>
 
 <script>
+const INGREDIENTS = {
+  pateapizza:    { name: 'Pâte à pizza',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pateapizza.webp' },
+  saucetomate:   { name: 'Sauce tomate',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/saucetomate.webp' },
+  jambonbayonne: { name: 'Jambon bayonne', img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/jambonbayonne.webp' },
+  mozza:         { name: 'Mozza',          img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/mozza.webp' },
+  fromage:       { name: 'Fromage',        img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/cheese.webp' },
+  pate:          { name: 'Pâte',           img: 'https://i.goopics.net/evwyz7.png' },
+  viandehachee:  { name: 'Viande hachée',  img: 'https://i.postimg.cc/3JPbhmnC/viande-hachee.png' },
+  paindemie:     { name: 'Pain de mie',    img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/paindemie.webp' },
+  olive:         { name: 'Olive',          img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/olive.webp' },
+  huile:         { name: 'Huile',          img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/huile.webp' },
+  mascarpone:    { name: 'Mascarpone',     img: 'https://i.postimg.cc/bNgtPJPv/image-removebg-preview.png' },
+  chocolat:      { name: 'Chocolat',       img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/chocolat.webp' },
+  farine:        { name: 'Farine',         img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/flour.webp' },
+  oeuf:          { name: 'Oeuf',           img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/egg.webp' },
+  sucre:         { name: 'Sucre',          img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/sugar.webp' },
+  jusdecitron:   { name: 'Jus de citron',  img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/jusdecitron.webp' },
+  eaugazeuse:    { name: 'Eau gazeuse',    img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/water2.webp' },
+  alcool:        { name: 'Alcool',         img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/alcool.webp' },
+  eau:           { name: 'Eau',            img: 'https://i.goopics.net/so718y.png' },
+  siropcola:     { name: 'Sirop cola',     img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/siropcola.webp' },
+  agave:         { name: 'Agave',          img: 'https://i.postimg.cc/W3HJWkkb/Gemini-Generated-Image-cr7oarcr7oarcr7o-removebg-preview.png' },
+};
+
 const PRODUCTS = [
   // Pizzas
-  { id: 'lancien',    name: "Pizza de l'Ancien", img: 'https://i.postimg.cc/W4tprcvR/pzb33r.png',                                             price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🥩 Jambon bayonne'] },
-  { id: 'margherita', name: 'Pizza Margherita',  img: 'https://i.postimg.cc/g0BJBkD2/d0hyhf.png',                                             price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
-  { id: '4fromage',   name: 'Pizza 4 Fromage',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizza4fromage.webp',                 price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Fromage'] },
-  { id: 'burata',     name: 'Pizza Burata',       img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizzaburata.webp',                   price: 45, cat: 'Pizzas',   recipe: ['🫓 Pâte à pizza', '🍅 Sauce tomate', '🧀 Mozza'] },
+  { id: 'lancien',    name: "Pizza de l'Ancien", img: 'https://i.postimg.cc/W4tprcvR/pzb33r.png',                                              price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','jambonbayonne'] },
+  { id: 'margherita', name: 'Pizza Margherita',  img: 'https://i.postimg.cc/g0BJBkD2/d0hyhf.png',                                              price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','mozza'] },
+  { id: '4fromage',   name: 'Pizza 4 Fromage',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizza4fromage.webp',                  price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','fromage'] },
+  { id: 'burata',     name: 'Pizza Burata',       img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizzaburata.webp',                    price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','mozza'] },
   // Plats
-  { id: 'lasagne',    name: 'Lasagne',            img: 'https://i.postimg.cc/4xfxfh2X/6qu43w.png',                                             price: 40, cat: 'Plats',    recipe: ['🍝 Pâte', '🥩 Viande hachée', '🍅 Sauce tomate'] },
-  { id: 'focaccia',   name: 'Focaccia',           img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Foccacia.png',               price: 40, cat: 'Plats',    recipe: ['🍞 Pain de mie', '🫒 Olive', '🫙 Huile'] },
+  { id: 'lasagne',    name: 'Lasagne',            img: 'https://i.postimg.cc/4xfxfh2X/6qu43w.png',                                              price: 40, cat: 'Plats',    recipe: ['pate','viandehachee','saucetomate'] },
+  { id: 'focaccia',   name: 'Focaccia',           img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Foccacia.png',                price: 40, cat: 'Plats',    recipe: ['paindemie','olive','huile'] },
   // Desserts
-  { id: 'tiramisu',   name: 'Tiramisu',           img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/tiramisu.webp',                      price: 20, cat: 'Desserts', recipe: ['🧁 Mascarpone', '🍫 Chocolat'] },
-  { id: 'panettone',  name: 'Panettone',          img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/panettone.png',               price: 20, cat: 'Desserts', recipe: ['🌾 Farine', '🥚 Oeuf', '🍬 Sucre'] },
+  { id: 'tiramisu',   name: 'Tiramisu',           img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/tiramisu.webp',                       price: 20, cat: 'Desserts', recipe: ['mascarpone','chocolat'] },
+  { id: 'panettone',  name: 'Panettone',          img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/panettone.png',                price: 20, cat: 'Desserts', recipe: ['farine','oeuf','sucre'] },
   // Boissons
-  { id: 'limonata',   name: 'Limonata',           img: 'https://i.postimg.cc/YqgWGgxm/qk4lfw.png',                                             price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '💧 Eau gazeuse', '🍬 Sucre'] },
-  { id: 'limoncello', name: 'Limoncello',         img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Limoncello.png',              price: 30, cat: 'Boissons', recipe: ['🍋 Jus de citron', '🍶 Alcool', '💧 Eau'] },
-  { id: 'tontoncola', name: 'Tonton Cola',        img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/TontonCola.png',              price: 30, cat: 'Boissons', recipe: ['🍫 Sirop cola', '💧 Eau gazeuse', '🍬 Sucre'] },
-  { id: 'tequila',    name: 'Tequila',            img: 'https://i.postimg.cc/V6fLgQyT/images-removebg-preview.png',                             price: 10, cat: 'Boissons', recipe: ['🍶 Alcool', '🌵 Agave', '💧 Eau'] },
+  { id: 'limonata',   name: 'Limonata',           img: 'https://i.postimg.cc/YqgWGgxm/qk4lfw.png',                                              price: 30, cat: 'Boissons', recipe: ['jusdecitron','eaugazeuse','sucre'] },
+  { id: 'limoncello', name: 'Limoncello',         img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Limoncello.png',               price: 30, cat: 'Boissons', recipe: ['jusdecitron','alcool','eau'] },
+  { id: 'tontoncola', name: 'Tonton Cola',        img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/TontonCola.png',               price: 30, cat: 'Boissons', recipe: ['siropcola','eaugazeuse','sucre'] },
+  { id: 'tequila',    name: 'Tequila',            img: 'https://i.postimg.cc/V6fLgQyT/images-removebg-preview.png',                              price: 10, cat: 'Boissons', recipe: ['alcool','agave','eau'] },
 ];
 
 const cart = {};
@@ -566,7 +610,7 @@ function renderMenu() {
             <img class="product-img" src="${p.img}" alt="${p.name}" loading="lazy">
             <span class="product-name">${p.name}</span>
             <span class="product-price">${p.price}</span>
-            <div class="product-recipe">${p.recipe.map(i => `<span>${i}</span>`).join('')}</div>
+            <div class="product-recipe">${p.recipe.map(k => {const ing = INGREDIENTS[k]; return `<div class="recipe-item"><img src="${ing.img}" alt="${ing.name}" loading="lazy"><span>${ing.name}</span></div>`;}).join('')}</div>
           </button>
         `).join('')}
       </div>
