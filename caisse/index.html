@@ -36,26 +36,26 @@
     /* ===== MENU ===== */
     .menu {
       flex: 1;
-      padding: 16px;
+      padding: 10px;
       overflow-y: auto;
       background: #2a1000;
     }
 
     .category-title {
-      font-size: 1.1rem;
+      font-size: 1rem;
       font-weight: 700;
       color: #ff8c42;
       text-transform: uppercase;
       letter-spacing: 2px;
-      margin: 16px 0 8px;
+      margin: 8px 0 6px;
       border-bottom: 2px solid #ff8c42;
       padding-bottom: 4px;
     }
 
     .products-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-      gap: 12px;
+      grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+      gap: 8px;
       margin-bottom: 8px;
     }
 
@@ -63,7 +63,7 @@
       background: #3d1a00;
       border: 3px solid #6b3000;
       border-radius: 16px;
-      padding: 14px 8px;
+      padding: 8px 6px;
       cursor: pointer;
       text-align: center;
       transition: all 0.15s;
@@ -85,8 +85,8 @@
     }
 
     .product-img {
-      width: 80px;
-      height: 80px;
+      width: 64px;
+      height: 64px;
       object-fit: contain;
       border-radius: 10px;
     }
@@ -487,8 +487,7 @@
       <span id="modal-total">0$</span>
     </div>
     <div class="modal-actions">
-      <button class="modal-btn print" onclick="window.print()">🖨️ Imprimer</button>
-      <button class="modal-btn close" onclick="document.getElementById('modal').classList.remove('show')">✖ Fermer</button>
+      <button class="modal-btn close" onclick="document.getElementById('modal').classList.remove('show')" style="background:#d4380d;color:#fff;">✖ Fermer</button>
     </div>
   </div>
 </div>
@@ -525,8 +524,8 @@ const PRODUCTS = [
   { id: '4fromage',   name: 'Pizza 4 Fromage',   img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizza4fromage.webp',                  price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','fromage'] },
   { id: 'burata',     name: 'Pizza Burata',       img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/pizzaburata.webp',                    price: 45, cat: 'Pizzas',   recipe: ['pateapizza','saucetomate','mozza'] },
   // Plats
-  { id: 'lasagne',    name: 'Lasagne',            img: 'https://i.postimg.cc/4xfxfh2X/6qu43w.png',                                              price: 40, cat: 'Plats',    recipe: ['pate','viandehachee','saucetomate'] },
-  { id: 'focaccia',   name: 'Focaccia',           img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Foccacia.png',                price: 40, cat: 'Plats',    recipe: ['paindemie','olive','huile'] },
+  { id: 'lasagne',    name: 'Lasagne',            img: 'https://i.postimg.cc/4xfxfh2X/6qu43w.png',                                              price: 40, cat: 'Pizzas',   recipe: ['pate','viandehachee','saucetomate'] },
+  { id: 'focaccia',   name: 'Focaccia',           img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/Foccacia.png',                price: 40, cat: 'Pizzas',   recipe: ['paindemie','olive','huile'] },
   // Desserts
   { id: 'tiramisu',   name: 'Tiramisu',           img: 'https://cdn.visionrp.fr/vision-cdn-v2/assets/items/tiramisu.webp',                       price: 20, cat: 'Desserts', recipe: ['mascarpone','chocolat'] },
   { id: 'panettone',  name: 'Panettone',          img: 'https://cdn.visionrp.fr/inside/images-nourriture/PizzaThis/panettone.png',                price: 20, cat: 'Desserts', recipe: ['farine','oeuf','sucre'] },
